@@ -25,6 +25,52 @@ public class App {
 
 
 
+    //Harvesine formula 
+
+
+
+
+
+
+
+
+
+
+
+    //radian conversion
+    public double degreesToRadians(double degrees) {
+        //double is overpowered for this haha
+        double radians = degrees * (3.14159 / 180);
+
+        return radians;
+    }
+
+    
+
+
+
+
+
+
+
+
+
+    //dealing with string to long conversion
+    public double stringToDouble(String strLatitude, String strLongitude) {
+
+        //decided to convert the coords into a double for precision. memory on my machine is a non-issue so this is sufficient for now
+        double latitude = Double.parseDouble(latitude.replace(',' , '.'));
+        
+        double longitude = Double.parseDouble(longitude.replace(',' , '.'));
+
+        System.out.println();
+
+        return latitude + longitude;
+
+
+
+    }
+
 
 
 
@@ -42,6 +88,21 @@ public class App {
         String LAT = in.next();
         int N = in.nextInt();
         
+
+
+
+        //decided to convert the coords into a double for precision. memory on my machine is a non-issue so this is sufficient for now
+
+        
+
+
+
+
+
+
+
+        //sorting through input logically and breaking it down to work with it how i need
+
 
         if (in.hasNextLine()) {
             in.nextLine();
