@@ -28,9 +28,29 @@ public class App {
     //Harvesine formula 
 
     public static double calculateDistance(double LAT1, double LON1, double LAT2, double LON2) {
+        double Radius = 6371;
         double distance = 0.00;
-        double a = 0.00;
-        double c = 0.00;
+
+        //convert lat and lons to radians 
+        LAT1 = degreesToRadians(LAT1);
+        LON1 = degreesToRadians(LON1);
+        LAT2 = degreesToRadians(LAT2);
+        LON1 = degreesToRadians(LON2);
+
+        //change in latitude and change in longitude
+        double dLat = LAT2 - LAT1;
+
+        double dLon = LON2 - LON1;
+
+        
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                   Math.cos(LAT1) * Math.cos(LAT2) * 
+                   Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+        
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+        distance = Radius * c;
 
 
 
@@ -94,19 +114,16 @@ public class App {
         //variables for data. data comes from console input to my understanding
         Scanner in = getSimulatedInput();
 
-        double LAT = stringToDouble(in.next());
-        double LON = stringToDouble(in.next());
-        System.out.println(LAT + ", " + LON);
+        double LAT1 = stringToDouble(in.next());
+        double LON1 = stringToDouble(in.next());
+        System.out.println(LAT1 + ", " + LON1);
         int N = in.nextInt();
         
         
 
 
 
-        double phi1 = degreesToRadians(LAT);
-        double lambda1 = degreesToRadians(LON);
-
-        System.out.println(phi1 + ", " + lambda1);
+        
 
         
 
@@ -128,6 +145,7 @@ public class App {
             String[] tokens = DEFIB.split(";");
             String flagKey1 = "3,";
             String flagKey2 = "43,";
+            String location = "";
             
             System.out.println("Outer Outer Loop");
 
@@ -140,12 +158,18 @@ public class App {
             for (int j = 0; j < tokens.length; j++) {
                 if (tokens[j].startsWith(flagKey1) || tokens[j].startsWith(flagKey2)){
 
+                    location = tokens[j - 3];
+                    
+
                     if(tokens[j].startsWith(flagKey1)) {
+
+                        System.out.println("Defib Located at: " + location);
+
                         double LAT2 = stringToDouble(tokens[j]);
 
                         System.out.print("Latitude: ");
                     
-                        System.out.println(LAT2);
+                        System.out.print(LAT2);
 
 
                     }
@@ -156,6 +180,11 @@ public class App {
                         
                         System.out.println(LON2);
                     }
+
+                    
+                    
+
+                    
 
                     
                     
