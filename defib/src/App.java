@@ -27,6 +27,16 @@ public class App {
 
     //Harvesine formula 
 
+    public static double calculateDistance(double LAT1, double LON1, double LAT2, double LON2) {
+        double distance = 0.00;
+        double a = 0.00;
+        double c = 0.00;
+
+
+
+        return distance;
+    }
+
 
 
 
@@ -38,9 +48,9 @@ public class App {
 
 
     //radian conversion
-    public double degreesToRadians(double degrees) {
+    public static double degreesToRadians(double degrees) {
         //double is overpowered for this haha
-        double radians = degrees * (3.14159 / 180);
+        double radians = degrees * (3.141589 / 180);
 
         return radians;
     }
@@ -56,16 +66,16 @@ public class App {
 
 
     //dealing with string to long conversion
-    public double stringToDouble(String strLatitude, String strLongitude) {
+    public static double stringToDouble(String str) {
 
         //decided to convert the coords into a double for precision. memory on my machine is a non-issue so this is sufficient for now
-        double latitude = Double.parseDouble(latitude.replace(',' , '.'));
+        double dbl = Double.parseDouble(str.replace(',' , '.'));
         
-        double longitude = Double.parseDouble(longitude.replace(',' , '.'));
+        
 
         System.out.println();
 
-        return latitude + longitude;
+        return dbl;
 
 
 
@@ -84,14 +94,19 @@ public class App {
         //variables for data. data comes from console input to my understanding
         Scanner in = getSimulatedInput();
 
-        String LON = in.next();
-        String LAT = in.next();
+        double LAT = stringToDouble(in.next());
+        double LON = stringToDouble(in.next());
+        System.out.println(LAT + ", " + LON);
         int N = in.nextInt();
+        
         
 
 
 
-        //decided to convert the coords into a double for precision. memory on my machine is a non-issue so this is sufficient for now
+        double phi1 = degreesToRadians(LAT);
+        double lambda1 = degreesToRadians(LON);
+
+        System.out.println(phi1 + ", " + lambda1);
 
         
 
@@ -113,19 +128,35 @@ public class App {
             String[] tokens = DEFIB.split(";");
             String flagKey1 = "3,";
             String flagKey2 = "43,";
-            boolean flag1 = false;
-            boolean flag2 = false;
+            
             System.out.println("Outer Outer Loop");
 
             System.out.println(i + 1);
 
             System.out.println(DEFIB);
             
-            int count = 0;
+            
 
             for (int j = 0; j < tokens.length; j++) {
                 if (tokens[j].startsWith(flagKey1) || tokens[j].startsWith(flagKey2)){
-                    System.out.println("1");
+
+                    if(tokens[j].startsWith(flagKey1)) {
+                        double LAT2 = stringToDouble(tokens[j]);
+
+                        System.out.print("Latitude: ");
+                    
+                        System.out.println(LAT2);
+
+
+                    }
+                    if (tokens[j].startsWith(flagKey2)){
+                        double LON2 = stringToDouble(tokens[j]);
+
+                        System.out.print("Longitude: ");
+                        
+                        System.out.println(LON2);
+                    }
+
                     
                     
                     
